@@ -13,12 +13,16 @@ RUN yum -y update; yum -y install \
     tar \
     python3-devel.x86_64 \
     swig3.x86_64 \
-    tbb-devel \
     zlib-devel.x86_64; yum clean all
 
 RUN curl -fSL "https://cmake.org/files/v3.12/cmake-3.12.4-Linux-x86_64.sh" -o /usr/cmake.sh
 RUN cd /usr \
  && chmod +x ./cmake.sh && bash cmake.sh --skip-license && rm cmake.sh
+ 
+ 
+RUN curl -s -SL "https://github.com/oneapi-src/oneTBB/releases/download/2019_U9/tbb2019_20191006oss_lin.tgz"   | tar xz &&\
+    cd tbb2019_20191006oss && cp -r include/tbb /usr/include && cp lib/intel64/gcc4.8/* /usr/lib64
+ 
  
 RUN cd tmp && curl -s -SL "https://github.com/CGAL/LAStools/archive/master.zip" -o laslib.zip && unzip laslib.zip && \
     cd LAStools-master && \
