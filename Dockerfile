@@ -22,7 +22,7 @@ RUN cd /tmp && curl -s -SL "https://github.com/CGAL/LAStools/archive/master.zip"
     mkdir build && cd build && \
     cmake .. && make -j 6 && make install && cd / && rm -rf /tmp/LAStools-master
 
-RUN curl -s -SL "https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz" | tar xz -C /tmp && \
+RUN curl -s -SL "https://archives.boost.io/release/1.84.0/source/boost_1_84_0.tar.gz" | tar xz -C /tmp && \
     cd /tmp/boost_1_84_0 && \
     ./bootstrap.sh --prefix=/usr/local --with-libraries=system,filesystem,program_options,iostreams,serialization && \
     ./b2 -j 6 install && cd / && rm -rf /tmp/boost_1_84_0
