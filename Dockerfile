@@ -20,7 +20,7 @@ RUN curl -s -SL "https://github.com/oneapi-src/oneTBB/releases/download/2019_U9/
 RUN cd /tmp && curl -s -SL "https://github.com/CGAL/LAStools/archive/master.zip" -o laslib.zip && unzip laslib.zip && \
     cd LAStools-master && \
     mkdir build && cd build && \
-    cmake .. && make -j 6 && make install && cd / && rm -rf /tmp/LAStools-master
+    cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && make -j 6 && make install && cd / && rm -rf /tmp/LAStools-master
 
 RUN curl -s -SL "https://archives.boost.io/release/1.84.0/source/boost_1_84_0.tar.gz" | tar xz -C /tmp && \
     cd /tmp/boost_1_84_0 && \
